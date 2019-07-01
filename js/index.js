@@ -31,11 +31,9 @@ function getCommits(anchor){
 function showCommits(){
   const commits = JSON.parse(this.responseText);
   const commitsList = `<ul>${
-    commits.map(c => {
-      debugger;
-      return `<li><strong>${c.author.login} - ${c.commit.author.name}:</strong><br>` +
+    commits.map(c => `<li><strong>${c.author.login} - ${c.commit.author.name}:</strong><br>` +
       c.commit.message
-    }).join()
+    ).join()
   }</ul>`;
 
   document.getElementById("details").innerHTML = commitsList;
