@@ -29,5 +29,14 @@ function getCommits(anchor){
 }
 
 function showCommits(){
-  console.log("cool")
+  const commits = JSON.parse(this.responseText);
+  const commitsList = `<ul>${
+    commits.map(r =>
+      `<li><a href=${r.html_url}>` +
+      r.name +
+      `</a> - <a href="#" data-fullname=${r.full_name} onClick="getCommits(this)">Get Commits</a></li>`
+    ).join()
+  }`;
+
+  document.getElementById("commits").innerHTML = commitsList;
 }
