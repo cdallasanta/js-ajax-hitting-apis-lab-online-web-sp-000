@@ -2,12 +2,12 @@
 function getRepositories(){
   const req = new XMLHttpRequest();
   const username = document.getElementById("username").value;
-  req.addEventListener('load', showRepositories);
+  req.addEventListener('load', displayRepositories);
   req.open('get', `https://api.github.com/users/${username}/repos`);
   req.send();
 }
 
-function showRepositories() {
+function displayRepositories() {
   const repos = JSON.parse(this.responseText);
   const reposList = `<ul>${
     repos.map(r =>
