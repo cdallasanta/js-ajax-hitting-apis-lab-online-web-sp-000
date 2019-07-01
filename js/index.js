@@ -15,5 +15,7 @@ function showRepositories() {
       r.name +
       '</li>'
     ).join()
-  }`
+  }`;
+
+  document.getElementById("repositories").innerHTML = reposList;
 }
