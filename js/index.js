@@ -25,12 +25,12 @@ function displayRepositories() {
 function getCommits(anchor){
   const req = new XMLHttpRequest();
   const repo = `${anchor.dataset.username}/${anchor.dataset.repository}` ;
-  req.addEventListener('load', showCommits);
+  req.addEventListener('load', displayCommits);
   req.open('get', `https://api.github.com/repos/${repo}/commits`);
   req.send();
 }
 
-function showCommits(){
+function displayCommits(){
   const commits = JSON.parse(this.responseText);
   const commitsList = `<ul>${
     commits.map(c => `<li><strong>${c.author ? c.author.login : "No Name"} - ${c.commit.author.name}:</strong><br>` +
@@ -45,12 +45,12 @@ function showCommits(){
 function getBranches(anchor){
   const req = new XMLHttpRequest();
   const repo = `${anchor.dataset.username}/${anchor.dataset.repository}` ;
-  req.addEventListener('load', showBranches);
+  req.addEventListener('load', displayBranches);
   req.open('get', `https://api.github.com/repos/${repo}/branches`);
   req.send();
 }
 
-function showBranches(){
+function displayBranches(){
   const branches = JSON.parse(this.responseText);
   const branchesList = `<ul>${
     branches.map(b => `<li>${b.name}</li>`).join('')
