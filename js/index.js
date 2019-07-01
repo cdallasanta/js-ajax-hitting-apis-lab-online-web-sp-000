@@ -11,7 +11,7 @@ function showRepositories() {
   const repos = JSON.parse(this.responseText);
   const reposList = `<ul>${
     repos.map(r =>
-      '<li><a>' +
+      '<li><a href=`${r.html_url}`>' +
       r.name +
       '</a></li>'
     ).join()
