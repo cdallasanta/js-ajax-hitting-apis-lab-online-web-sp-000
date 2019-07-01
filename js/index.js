@@ -25,7 +25,7 @@ function getCommits(anchor){
   debugger;
   const repo = anchor.dataset.fullname;
   req.addEventListener('load', showCommits);
-  req.open('get', `/repos/${repo}/commits`);
+  req.open('get', `https://api.github.com/repos/${repo}/commits`);
   req.send();
 }
 
