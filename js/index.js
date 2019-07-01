@@ -29,5 +29,5 @@ function getCommits(anchor){
 }
 
 function showCommits(){
-
+  console.log("cool")
 }
