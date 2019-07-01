@@ -8,5 +8,12 @@ function getRepositories(){
 }
 
 function showRepositories() {
-  console.log("cool");
+  const repos = JSON.parse(this.responseText);
+  const reposList = `<ul>${
+    repos.map(r =>
+      '<li>' +
+      r.name +
+      '</li>'
+    ).join()
+  }`
 }
