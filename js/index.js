@@ -15,7 +15,7 @@ function showRepositories() {
       r.name +
       `</a> - <a href="#" data-fullname=${r.full_name} onClick="getCommits(this)">Get Commits</a></li>`
     ).join()
-  }`;
+  }</ul>`;
 
   document.getElementById("repositories").innerHTML = reposList;
 }
@@ -31,12 +31,11 @@ function getCommits(anchor){
 function showCommits(){
   const commits = JSON.parse(this.responseText);
   const commitsList = `<ul>${
-    commits.map(r =>
-      `<li><a href=${r.html_url}>` +
-      r.name +
-      `</a> - <a href="#" data-fullname=${r.full_name} onClick="getCommits(this)">Get Commits</a></li>`
+    commits.map(c =>
+      `<li><strong>${c.author.login} - ${c.author.name}:</strong><br>` +
+      c.commit.message
     ).join()
-  }`;
+  }</ul>`;
 
   document.getElementById("commits").innerHTML = commitsList;
 }
