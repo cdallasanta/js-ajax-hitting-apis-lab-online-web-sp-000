@@ -13,8 +13,8 @@ function showRepositories() {
     repos.map(r =>
       `<li><a href=${r.html_url}>` +
       r.name +
-      `</a> - <a href="#" data-username=${r.full_name} onClick="getCommits(this)">Get Commits</a> - ` +
-      `</a> - <a href="#" data-username=${r.full_name} onClick="getBranches(this)">Get Branches</a></li>`
+      `</a> - <a href="#" data-username=${r.owner.login} data-repository=${r.name} onClick="getCommits(this)">Get Commits</a> - ` +
+      `</a> - <a href="#" data-username=${r.owner.login} data-repository=${r.name} onClick="getBranches(this)">Get Branches</a></li>`
     ).join('')
   }</ul>`;
 
@@ -23,7 +23,7 @@ function showRepositories() {
 
 function getCommits(anchor){
   const req = new XMLHttpRequest();
-  const repo = anchor.dataset.fullname;
+  const repo = `${anchor.dataset.username}/${anchor.dataset.repository}` ;
   req.addEventListener('load', showCommits);
   req.open('get', `https://api.github.com/repos/${repo}/commits`);
   req.send();
@@ -43,7 +43,7 @@ function showCommits(){
 
 function getBranches(anchor){
   const req = new XMLHttpRequest();
-  const repo = anchor.dataset.fullname;
+  const repo = `${anchor.dataset.username}/${anchor.dataset.repository}` ;
   req.addEventListener('load', showBranches);
   req.open('get', `https://api.github.com/repos/${repo}/branches`);
   req.send();
