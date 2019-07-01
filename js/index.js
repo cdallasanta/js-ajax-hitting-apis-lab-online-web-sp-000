@@ -13,8 +13,9 @@ function showRepositories() {
     repos.map(r =>
       `<li><a href=${r.html_url}>` +
       r.name +
-      `</a> - <a href="#" data-fullname=${r.full_name} onClick="getCommits(this)">Get Commits</a></li>`
-    ).join()
+      `</a> - <a href="#" data-fullname=${r.full_name} onClick="getCommits(this)">Get Commits</a> - ` +
+      `</a> - <a href="#" data-fullname=${r.full_name} onClick="getBranches(this)">Get Branches</a></li>`
+    ).join('')
   }</ul>`;
 
   document.getElementById("repositories").innerHTML = reposList;
@@ -37,4 +38,23 @@ function showCommits(){
   }</ul>`;
 
   document.getElementById("details").innerHTML = commitsList;
+}
+
+function getBranches(anchor){
+  const req = new XMLHttpRequest();
+  const repo = anchor.dataset.fullname;
+  req.addEventListener('load', showBranches);
+  req.open('get', `https://api.github.com/repos/${repo}/branches`);
+  req.send();
+}
+
+function showBranches(){
+  const branches = JSON.parse(this.responseText);
+  const branchesList = `<ul>${
+    branches.map(c => `<li><strong>${c.author ? c.author.login : "No Name"} - ${c.commit.author.name}:</strong><br>` +
+      c.commit.message
+    ).join()
+  }</ul>`;
+
+  document.getElementById("details").innerHTML = branchesList;
 }
