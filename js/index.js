@@ -1,5 +1,6 @@
 // your code here
 function getRepositories(){
   const req = new XMLHttpRequest();
-  req.open('get', 'https://api.')
+  const username = $("username").val();
+  req.open('get', `https://api.github.com/${username}/repos`)
 }
