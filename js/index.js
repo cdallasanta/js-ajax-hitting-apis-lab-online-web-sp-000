@@ -22,6 +22,7 @@ function showRepositories() {
 
 function getCommits(anchor){
   const req = new XMLHttpRequest();
+  debugger;
   const repo = anchor.dataset.fullname;
   req.addEventListener('load', showCommits);
   req.open('get', `/repos/${repo}/commits`);
