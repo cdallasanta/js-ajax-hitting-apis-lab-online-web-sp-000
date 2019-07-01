@@ -1,5 +1,6 @@
 // your code here
 function getRepositories(){
+  console.log("cool");
   const req = new XMLHttpRequest();
   const username = $("username").val();
   req.addEventListener('load', showRepositories);
