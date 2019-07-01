@@ -13,8 +13,8 @@ function showRepositories() {
     repos.map(r =>
       `<li><a href=${r.html_url}>` +
       r.name +
-      `</a> - <a href="#" data-fullname=${r.full_name} onClick="getCommits(this)">Get Commits</a> - ` +
-      `</a> - <a href="#" data-fullname=${r.full_name} onClick="getBranches(this)">Get Branches</a></li>`
+      `</a> - <a href="#" data-username=${r.full_name} onClick="getCommits(this)">Get Commits</a> - ` +
+      `</a> - <a href="#" data-username=${r.full_name} onClick="getBranches(this)">Get Branches</a></li>`
     ).join('')
   }</ul>`;
 
